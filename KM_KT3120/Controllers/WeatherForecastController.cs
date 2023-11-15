@@ -17,10 +17,22 @@ namespace KM_KT3120.Controllers
         {
             _logger = logger;
         }
+        [HttpPost(Name = "AddNewSummary")]
+        public string[] AddNewSummary (string newSummary) 
+        {
+            _logger.LogError("New metod was called");
+
+            var list = Summaries.ToList();
+            list.Add(newSummary);
+            return list.ToArray();
+        }
+
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogError("Method was called");
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
